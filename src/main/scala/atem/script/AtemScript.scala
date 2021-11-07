@@ -13,7 +13,10 @@ enum AtemOp(id: String):
 case class AtemMacroSection(ops: List[AtemOp]):
   def combine(other: AtemMacroSection) = AtemMacroSection(this.ops ++ other.ops)
 
-case class AtemMacro(ops: List[AtemOp], description: Option[String] = None)
+case class AtemMacro(
+  name: String,
+  ops: List[AtemOp],
+  description: Option[String] = None)
 object AtemMacro:
   def apply(section: AtemMacroSection): AtemMacro = AtemMacro(section.ops)
 
@@ -26,16 +29,16 @@ given Conversion[List[AtemOp], AtemMacroSection] with
 given Conversion[AtemMacroSection, List[AtemOp]] with
   def apply(macroSection: AtemMacroSection): List[AtemOp] = macroSection.ops
 
-enum AtemProduct(name: String):
+enum AtemProduct(val name: String):
   case AtemMiniPro extends AtemProduct("ATEM Mini Pro")
 
-enum AtemInput(name: String):
+enum AtemInput(val name: String):
   case Mic1 extends AtemInput("ExternalMic")
   case Mic2 extends AtemInput("ExternalMic2")
 
 case class AtemProfile(product: AtemProduct, macros: List[AtemMacro])
 
-object AtemScript extends App:
+trait AtemScript extends App with AtemScriptWriter:
   val MinusInfMicGain = -120.41d
   def atemMiniPro(macros: AtemMacro*): AtemProfile =
     AtemProfile(AtemProduct.AtemMiniPro, macros.toList)
@@ -53,14 +56,12 @@ object AtemScript extends App:
   val linearFade: FadeFunction = (fromGain: Double, toGain: Double, steps: Int, step: Int) =>
     val delta = (toGain - fromGain) / steps
     val gain = fromGain + delta * (step + 1)
-    println(s"linear step $step gain $gain")
     gain
   val logFade: FadeFunction = (fromGain: Double, toGain: Double, steps: Int, step: Int) =>
     val minLog = log(max(abs(fromGain + 1), 0.1d))
     val maxLog = log(abs(toGain))
     val delta = (maxLog - minLog) / steps
     val gain = exp(abs(minLog + delta * (step + 1)))
-    println(s"log step $step gain $gain")
     gain
   val DefaultFadeFunction = logFade
   private def micFade(
@@ -75,7 +76,7 @@ object AtemScript extends App:
     (for {
       step <- 0 until steps
       gain = fadeFunction(fromGain, toGain, steps, step)
-    } yield micGain(input, gain)).toList :+ sleep(framesBetweenSteps)
+    } yield micGain(input, gain)).flatMap(sleep(framesBetweenSteps) :: _ :: Nil).toList.tail
   def mic1Fade(
     fromGain: Double = 0,
     toGain: Double = MinusInfMicGain,
@@ -97,28 +98,10 @@ object AtemScript extends App:
   extension (sections: Seq[AtemMacroSection])
     def combineSections =
       sections.toList.reduce(_.combine(_))
-  extension (s: String)
+  extension (name: String)
     def apply(op: AtemOp, ops: AtemOp*) =
-      AtemMacro(op :: ops.toList)
+      AtemMacro(name, op :: ops.toList)
     def apply(section: AtemMacroSection, sections: AtemMacroSection*) =
-      AtemMacro((section :: (if sections.isEmpty then Nil else sections.toList)).combineSections)
+      AtemMacro(name, (section :: (if sections.isEmpty then Nil else sections.toList)).combineSections)
     def apply(description: String, sections: AtemMacroSection*) =
-      AtemMacro(sections.combineSections, Some(description))
-
-//example
-
-  given sourceId: String = "18446744073709486336"
-  println {
-
-    atemMiniPro(
-//      "some macro" (
-//        "some description",
-//        mic1Gain(2),
-//        sleep(5),
-//        mic1Fade()
-//      ),
-      "fade" (mic1Fade())
-//      "linear fade" (mic2Fade(fadeFunction = linearFade))
-    )
-
-  }
+      AtemMacro(name, sections.combineSections, Some(description))
