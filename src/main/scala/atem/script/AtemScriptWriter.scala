@@ -16,31 +16,34 @@ trait AtemScriptWriter:
       case AtemOp.AudioInputGainOp(input, gain, sourceId) =>
         <Op id="FairlightAudioMixerInputSourceFaderGain" input={input.name} sourceId={sourceId} gain={f"$gain%2.2f"}/>
 
-  private given Conversion[AtemProfile, String] with
-    def apply(profile: AtemProfile): String =
-      pp.format(
-        <Profile majorVersion="1" minorVersion="5" product={profile.product.name}>
-    <MacroPool>
-      {
-          for
-            i <- 0 until profile.macros.size
-            aMacro = profile.macros(i)
-          yield {
-            <Macro index={i.toString} name={aMacro.name} description={
-              aMacro.description.getOrElse("")
-            }>
+  private def profileToXml(profile: AtemProfile): String =
+    pp.format(
+      <Profile majorVersion="1" minorVersion="5" product={profile.product.name}>
+        <MacroPool>
+          {
+        for
+          i <- 0 until profile.macros.size
+          aMacro = profile.macros(i)
+        yield {
+          <Macro index={i.toString} name={aMacro.name} description={
+            aMacro.description.getOrElse("")
+          }>
               {
-              for
-                op <- aMacro.ops
-                xml = opToXml(op)
-              yield xml
-            }
-          </Macro>
+            for
+              op <- aMacro.ops
+              xml = opToXml(op)
+            yield xml
           }
+            </Macro>
         }
-    </MacroPool>
-</Profile>
-      )
+      }
+        </MacroPool>
+        <MacroControl loop="False"/>
+      </Profile>
+    )
+
+  private given Conversion[AtemProfile, String] with
+    def apply(profile: AtemProfile): String = profileToXml(profile)
 
   private def write(fileName: String, profile: AtemProfile): Unit =
     val outputDirName = "out"
@@ -53,6 +56,8 @@ trait AtemScriptWriter:
 
   private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss")
 
-  def write(profile: AtemProfile): Unit =
+  def timestampedWrite(profile: AtemProfile): Unit =
     val timeSuffix = LocalDateTime.now().format(formatter)
     write(s"${this.getClass.getSimpleName} $timeSuffix", profile)
+
+  def printXml(profile: AtemProfile): Unit = println(profileToXml(profile))

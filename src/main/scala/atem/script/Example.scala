@@ -6,15 +6,10 @@ object Example extends AtemScript:
   overwrite {
 
     atemMiniPro(
-      "some macro" (
-        "some description",
-        userWait,
-        mic1Gain(2),
-        sleep(5),
+      "mic1 fade macro" (
+        "macro that takes the  gain to minus infinity",
         mic1Fade()
-      ),
-      "fade" (mic1Fade()),
-      "linear fade" (mic2Fade(fadeFunction = linearFade))
+      )
     )
 
   }
