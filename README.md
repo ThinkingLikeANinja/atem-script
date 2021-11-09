@@ -43,65 +43,65 @@ Running that script will output the following XML:
 <Profile majorVersion="1" minorVersion="5" product="ATEM Mini Pro">
     <MacroPool>
         <Macro index="0" name="mic1 fade macro" description="macro that takes the  gain to minus infinity">
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="1,17"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-1.17"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="1,38"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-1.38"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="1,61"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-1.61"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="1,89"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-1.89"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="2,22"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-2.22"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="2,61"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-2.61"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="3,06"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-3.06"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="3,59"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-3.59"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="4,21"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-4.21"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="4,94"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-4.94"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="5,79"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-5.79"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="6,80"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-6.8"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="7,97"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-7.97"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="9,35"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-9.35"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="10,97"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-10.97"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="12,87"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-12.87"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="15,10"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-15.1"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="17,72"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-17.72"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="20,79"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-20.79"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="24,38"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-24.38"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="28,61"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-28.61"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="33,56"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-33.56"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="39,37"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-39.37"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="46,19"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-46.19"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="54,19"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-54.19"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="63,57"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-63.57"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="74,58"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-74.58"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="87,49"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-87.49"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="102,64"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-102.64"/>
             <Op id="MacroSleep" frames="4"/>
-            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="120,41"/>
+            <Op id="FairlightAudioMixerInputSourceFaderGain" input="ExternalMic" sourceId="18446744073709486336" gain="-120.41"/>
         </Macro>
     </MacroPool>
     <MacroControl loop="False"/>

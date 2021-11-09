@@ -1,20 +1,27 @@
 package atem.script
 
 import java.io.*
+import java.text.{DecimalFormat, DecimalFormatSymbols}
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.Locale
 import scala.xml.*
 
 trait AtemScriptWriter:
 
   private val pp = new PrettyPrinter(200, 4)
 
+  private val symbols = new DecimalFormatSymbols(Locale.ROOT)
+  private val df = new DecimalFormat("#.##;-#.##", symbols)
+
   private def opToXml(op: AtemOp) =
     op match
       case AtemOp.SleepOp(frames) => <Op id="MacroSleep" frames={s"$frames"}/>
       case AtemOp.UserWaitOp      => <Op id="MacroUserWait"/>
       case AtemOp.AudioInputGainOp(input, gain, sourceId) =>
-        <Op id="FairlightAudioMixerInputSourceFaderGain" input={input.name} sourceId={sourceId} gain={f"$gain%2.2f"}/>
+        <Op id="FairlightAudioMixerInputSourceFaderGain" input={input.name} sourceId={sourceId} gain={
+          df.format(gain)
+        }/>
 
   private def profileToXml(profile: AtemProfile): String =
     pp.format(
@@ -22,7 +29,7 @@ trait AtemScriptWriter:
         <MacroPool>
           {
         for
-          i <- 0 until profile.macros.size
+          i <- profile.macros.indices
           aMacro = profile.macros(i)
         yield {
           <Macro index={i.toString} name={aMacro.name} description={
@@ -49,7 +56,13 @@ trait AtemScriptWriter:
     val outputDirName = "out"
     val od = File(outputDirName)
     if !od.exists() then od.mkdir()
-    XML.save(s"$outputDirName/$fileName.xml", XML.loadString(profile), "UTF-8", true, null)
+    XML.save(
+      s"$outputDirName/$fileName.xml",
+      XML.loadString(profile),
+      "UTF-8",
+      xmlDecl = true,
+      doctype = null
+    )
 
   def overwrite(profile: AtemProfile): Unit =
     write(this.getClass.getSimpleName, profile)

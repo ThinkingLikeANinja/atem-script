@@ -11,14 +11,12 @@ enum AtemOp(id: String):
     sourceId: String) extends AtemOp("FairlightAudioMixerInputSourceFaderGain")
 
 case class AtemMacroSection(ops: List[AtemOp]):
-  def combine(other: AtemMacroSection) = AtemMacroSection(this.ops ++ other.ops)
+  def combine(other: AtemMacroSection): AtemMacroSection = AtemMacroSection(this.ops ++ other.ops)
 
 case class AtemMacro(
   name: String,
   ops: List[AtemOp],
   description: Option[String] = None)
-object AtemMacro:
-  def apply(section: AtemMacroSection): AtemMacro = AtemMacro(section.ops)
 
 given Conversion[AtemOp, AtemMacroSection] with
   def apply(op: AtemOp): AtemMacroSection = AtemMacroSection(List(op))
@@ -62,7 +60,7 @@ trait AtemScript extends App with AtemScriptWriter:
     val maxLog = log(abs(toGain))
     val delta = (maxLog - minLog) / steps
     val gain = exp(abs(minLog + delta * (step + 1)))
-    gain
+    gain * -1
   val DefaultFadeFunction = logFade
   private def micFade(
     input: AtemInput,
