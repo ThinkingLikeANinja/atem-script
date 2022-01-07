@@ -2,13 +2,14 @@ package atem.script
 
 object Example extends AtemScript:
 
-  given sourceId: String = "18446744073709486336"
+  given product: AtemProduct.AtemMiniPro = "18446744073709486336"
   overwrite {
 
-    atemMiniPro(
+    atemMacros(
       "mic1 fade macro" (
         "macro that takes the  gain to minus infinity",
-        mic1Fade()
+        mic1Fade(),
+        sleep(5)
       )
     )
 
