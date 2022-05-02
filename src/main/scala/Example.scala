@@ -1,4 +1,4 @@
-package atem.script
+import atem.script.{given, *}
 
 object Example extends AtemScript:
 

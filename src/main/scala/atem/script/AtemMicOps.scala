@@ -2,13 +2,13 @@ package atem.script
 
 import scala.math._
 
-case class AudioFadeArguments(
-  fromGain: Double = 0,
-  toGain: Double = -120.41d,
-  steps: Int = 50,
-  framesBetweenSteps: Int = 1)
-
 trait AtemMicOps extends AtemControlOps:
+
+  case class AudioFadeArguments(
+    fromGain: Double = 0,
+    toGain: Double = -120.41d,
+    steps: Int = 50,
+    framesBetweenSteps: Int = 1)
 
   val DefaultAudioFadeArguments: AudioFadeArguments = AudioFadeArguments()
 
